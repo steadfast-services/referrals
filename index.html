@@ -1,0 +1,1675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Steadfast Senior Referrals – Find Trusted Senior Care in Massachusetts</title>
+  <meta name="description" content="Steadfast Senior Referrals connects Massachusetts families with vetted home care agencies, assisted living, companion care, and senior services. Free to search, free to inquire."/>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy:   #1a3a5c;
+      --blue:   #2c5f8a;
+      --gold:   #f0a500;
+      --gold2:  #f5c030;
+      --bg:     #f0f4f8;
+      --text:   #2d3748;
+      --subtle: #5a6a7e;
+      --card:   #f7faff;
+      --border: #dde8f5;
+      --green:  #2e7d32;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Open Sans', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--navy);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+    }
+    .nav-inner {
+      max-width: 1060px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      height: 64px;
+    }
+    .nav-logo {
+      font-family: 'Merriweather', serif;
+      font-size: 16px;
+      font-weight: 900;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 2px; list-style: none; }
+    .nav-links a {
+      display: block;
+      padding: 8px 14px;
+      color: #b8d4f0;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background .2s, color .2s;
+    }
+    .nav-links a:hover  { background: rgba(255,255,255,.10); color: white; }
+    .nav-links a.active { background: rgba(255,255,255,.12); color: var(--gold); }
+    .nav-links a.nav-join { color: var(--gold); }
+    .nav-links a.nav-join:hover { background: rgba(240,165,0,.15); }
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 26px;
+      cursor: pointer;
+    }
+
+    /* ── MAIN ── */
+    main {
+      flex: 1;
+      max-width: 1060px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 40px 24px;
+    }
+    .section { display: none; }
+    .section.active { display: block; }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+      border-radius: 14px;
+      padding: 52px 52px 44px;
+      color: white;
+      margin-bottom: 22px;
+    }
+    .hero-inner { display: flex; gap: 44px; align-items: flex-start; }
+    .hero-left { flex: 1 1 0; min-width: 0; }
+    .hero-right {
+      flex: 0 0 240px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .hero-right-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .hero-svc-list { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+    .hero-svc-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13.5px;
+      color: #d8eaf8;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+    .hs-icon { font-size: 18px; flex-shrink: 0; }
+    .eyebrow {
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .hero h1 {
+      font-family: 'Merriweather', serif;
+      font-size: 34px;
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+    .hero p {
+      font-size: 15.5px;
+      color: #b8d4f0;
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+    .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-gold {
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: 700;
+      font-size: 15px;
+      padding: 13px 28px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background .2s, transform .15s;
+    }
+    .btn-gold:hover { background: var(--gold2); transform: translateY(-1px); }
+    .btn-outline {
+      background: transparent;
+      color: white;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 13px 28px;
+      border: 2px solid rgba(255,255,255,.4);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: border-color .2s, transform .15s;
+    }
+    .btn-outline:hover { border-color: white; transform: translateY(-1px); }
+
+    /* ── TRUST STRIP ── */
+    .trust-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+    .trust-card {
+      background: white;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .tc-icon { font-size: 22px; }
+    .tc-title { font-size: 13.5px; font-weight: 700; color: var(--navy); line-height: 1.3; }
+    .tc-desc  { font-size: 12.5px; color: var(--subtle); line-height: 1.5; }
+
+    /* ── HOW IT WORKS ── */
+    .hiw-strip {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-bottom: 22px;
+    }
+    .hiw-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--blue);
+      margin-bottom: 22px;
+    }
+    .hiw-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+    }
+    .hiw-steps::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: calc(100% / 8);
+      right: calc(100% / 8);
+      height: 2px;
+      background: var(--border);
+      z-index: 0;
+    }
+    .hiw-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 10px;
+      position: relative;
+      z-index: 1;
+      padding: 0 8px;
+    }
+    .hiw-num {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: white;
+      font-family: 'Merriweather', serif;
+      font-weight: 900;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hiw-step strong { font-size: 13.5px; font-weight: 700; color: var(--navy); display: block; line-height: 1.3; }
+    .hiw-step span   { font-size: 12px; color: var(--subtle); line-height: 1.4; }
+
+    /* ── HOME BOTTOM PANELS ── */
+    .home-bottom {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 20px;
+      margin-bottom: 22px;
+      align-items: start;
+    }
+
+    /* ── QUICK SEARCH (home) ── */
+    .quick-search-card {
+      background: white;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 32px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.06);
+    }
+    .qs-title {
+      font-family: 'Merriweather', serif;
+      font-size: 17px;
+      font-weight: 900;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+    .qs-sub { font-size: 13.5px; color: var(--subtle); margin-bottom: 20px; }
+    .qs-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+    .qs-row select, .qs-row input {
+      padding: 11px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 7px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 14px;
+      color: var(--text);
+      background: var(--bg);
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .qs-row select:focus, .qs-row input:focus {
+      outline: none;
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(44,95,138,.12);
+      background: white;
+    }
+    .btn-search {
+      width: 100%;
+      background: var(--navy);
+      color: white;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 13px 24px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .btn-search:hover { background: var(--blue); }
+
+    /* ── QUICK CONTACT (home) ── */
+    .quick-contact-card {
+      background: white;
+      border: 2px solid var(--gold);
+      border-radius: 12px;
+      padding: 24px 26px;
+      box-shadow: 0 2px 14px rgba(240,165,0,.12);
+    }
+    .qc-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+    .qc-icon-wrap {
+      font-size: 24px;
+      background: #fff8e6;
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .qc-title { font-family: 'Merriweather', serif; font-size: 15px; font-weight: 900; color: var(--navy); }
+    .qc-sub   { font-size: 12.5px; color: var(--subtle); margin-top: 2px; }
+    .qc-fields { display: flex; flex-direction: column; gap: 10px; margin-bottom: 10px; }
+    .qc-fields input, .qc-fields textarea {
+      padding: 10px 13px;
+      border: 1.5px solid var(--border);
+      border-radius: 7px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 14px;
+      color: var(--text);
+      background: var(--bg);
+      transition: border-color .2s;
+    }
+    .qc-fields input:focus, .qc-fields textarea:focus {
+      outline: none;
+      border-color: var(--blue);
+      background: white;
+    }
+    .qc-fields textarea { resize: none; height: 78px; }
+    .qc-btn {
+      width: 100%;
+      background: var(--gold);
+      color: var(--navy);
+      font-family: 'Open Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 11px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .qc-btn:hover { background: var(--gold2); }
+    .qc-btn:disabled { opacity: .6; cursor: not-allowed; }
+    .qc-badges {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+    .qc-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .qc-badge-icon { font-size: 14px; }
+
+    /* ── PAGE HEADER ── */
+    .page-h { margin-bottom: 28px; }
+    .page-h h2 {
+      font-family: 'Merriweather', serif;
+      font-size: 26px;
+      font-weight: 900;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .page-h p { font-size: 15px; color: var(--subtle); line-height: 1.6; }
+
+    /* ── DIRECTORY FILTERS ── */
+    .dir-filters {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 22px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .dir-filters select, .dir-filters input {
+      padding: 10px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 7px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 14px;
+      color: var(--text);
+      background: var(--bg);
+      flex: 1 1 160px;
+      transition: border-color .2s;
+    }
+    .dir-filters select:focus, .dir-filters input:focus {
+      outline: none;
+      border-color: var(--blue);
+      background: white;
+    }
+    .filter-count {
+      font-size: 13px;
+      color: var(--subtle);
+      font-weight: 600;
+      white-space: nowrap;
+      margin-left: auto;
+    }
+    .filter-count span { color: var(--navy); font-weight: 700; }
+
+    /* ── PROVIDER CARDS ── */
+    .provider-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .provider-card {
+      background: white;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 22px 22px 18px;
+      transition: box-shadow .2s, border-color .2s;
+      position: relative;
+    }
+    .provider-card:hover { box-shadow: 0 6px 22px rgba(44,95,138,.12); border-color: #b8d0e8; }
+    .provider-card.featured { border-color: var(--gold); }
+    .feat-badge {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+    .pcard-top { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 10px; }
+    .pcard-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 10px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    .pcard-name {
+      font-family: 'Merriweather', serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.3;
+      margin-bottom: 3px;
+    }
+    .pcard-type { font-size: 12.5px; color: var(--blue); font-weight: 600; }
+    .pcard-stars { display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
+    .stars { color: var(--gold); font-size: 14px; letter-spacing: 1px; }
+    .rating-num { font-size: 13px; font-weight: 700; color: var(--navy); }
+    .review-count { font-size: 12px; color: var(--subtle); }
+    .pcard-bio { font-size: 13px; color: var(--subtle); line-height: 1.55; margin-bottom: 12px; }
+    .pcard-services {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+    .svc-tag {
+      background: #edf4ff;
+      color: var(--blue);
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 20px;
+    }
+    .pcard-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+    .pcard-region { font-size: 12px; color: var(--subtle); }
+    .pcard-region strong { color: var(--text); }
+    .btn-inquire-sm {
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 7px;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .btn-inquire-sm:hover { background: var(--gold2); }
+    .verified-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--green);
+      margin-left: 8px;
+    }
+    .no-results {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 60px 24px;
+      color: var(--subtle);
+    }
+    .no-results .nr-icon { font-size: 40px; display: block; margin-bottom: 14px; }
+    .no-results h3 { font-size: 18px; color: var(--navy); margin-bottom: 8px; }
+
+    /* ── PRICING ── */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 28px;
+    }
+    .pricing-card {
+      background: white;
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 32px 28px;
+    }
+    .pricing-card.featured-plan { border-color: var(--gold); box-shadow: 0 4px 20px rgba(240,165,0,.18); }
+    .plan-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      margin-bottom: 14px;
+    }
+    .plan-name {
+      font-family: 'Merriweather', serif;
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .plan-price {
+      font-family: 'Merriweather', serif;
+      font-size: 44px;
+      font-weight: 900;
+      color: var(--navy);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .plan-price sup { font-size: 20px; vertical-align: top; margin-top: 8px; }
+    .plan-price small { font-size: 15px; color: var(--subtle); font-family: 'Open Sans', sans-serif; font-weight: 400; }
+    .plan-desc { font-size: 13.5px; color: var(--subtle); line-height: 1.5; margin-bottom: 22px; }
+    .plan-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 26px; }
+    .plan-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      font-size: 13.5px;
+      color: var(--text);
+      line-height: 1.4;
+    }
+    .plan-features li .pf-check { color: var(--green); font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+    .btn-plan-free {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 13px 24px;
+      border: 2px solid var(--navy);
+      border-radius: 8px;
+      color: var(--navy);
+      font-family: 'Open Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      background: transparent;
+      text-decoration: none;
+      transition: background .2s;
+    }
+    .btn-plan-free:hover { background: var(--bg); }
+    .btn-plan-premium {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 13px 24px;
+      border-radius: 8px;
+      color: var(--navy);
+      font-family: 'Open Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      background: var(--gold);
+      border: none;
+      text-decoration: none;
+      transition: background .2s;
+    }
+    .btn-plan-premium:hover { background: var(--gold2); }
+
+    /* ── FORMS ── */
+    .form-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 36px 40px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.06);
+    }
+    .form-card h2 {
+      font-family: 'Merriweather', serif;
+      font-size: 23px;
+      font-weight: 900;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .form-sub { font-size: 14.5px; color: var(--subtle); margin-bottom: 28px; line-height: 1.55; }
+    .f-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .f-group { display: flex; flex-direction: column; }
+    .f-group.full { grid-column: 1 / -1; }
+    .f-group label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      margin-bottom: 6px;
+    }
+    .f-group label .req { color: var(--gold); }
+    .f-group input,
+    .f-group select,
+    .f-group textarea {
+      padding: 11px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 7px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 14px;
+      color: var(--text);
+      background: var(--bg);
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .f-group input:focus,
+    .f-group select:focus,
+    .f-group textarea:focus {
+      outline: none;
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(44,95,138,.12);
+      background: white;
+    }
+    .f-group textarea { resize: vertical; min-height: 110px; }
+    .btn-submit {
+      margin-top: 20px;
+      width: 100%;
+      background: var(--gold);
+      color: var(--navy);
+      font-family: 'Open Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      padding: 15px 40px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background .2s, transform .15s;
+    }
+    .btn-submit:hover { background: var(--gold2); transform: translateY(-1px); }
+    .btn-submit:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+    .form-note { font-size: 12px; color: var(--subtle); margin-top: 10px; text-align: center; }
+    .form-success {
+      display: none;
+      background: #e8f5e9;
+      border: 1.5px solid #81c784;
+      border-radius: 10px;
+      padding: 32px 24px;
+      text-align: center;
+      color: #2e7d32;
+    }
+    .form-success .s-icon { font-size: 44px; margin-bottom: 12px; display: block; }
+    .form-success h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+    .form-success p { font-size: 14.5px; color: #388e3c; line-height: 1.5; }
+    .form-success .reset-btn {
+      margin-top: 18px;
+      background: #2e7d32;
+      color: white;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 7px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .form-error {
+      display: none;
+      background: #fdecea;
+      border: 1.5px solid #ef9a9a;
+      border-radius: 8px;
+      padding: 12px 16px;
+      color: #c62828;
+      font-size: 14px;
+      margin-top: 14px;
+      text-align: center;
+    }
+
+    /* ── FOR PROVIDERS page extras ── */
+    .provider-benefits {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    .benefit-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 18px;
+    }
+    .bc-icon { font-size: 26px; margin-bottom: 8px; display: block; }
+    .bc-title { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .bc-desc  { font-size: 12.5px; color: var(--subtle); line-height: 1.5; }
+
+    /* ── PRIVACY ── */
+    .privacy-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 40px 44px;
+    }
+    .privacy-card h2 { font-family: 'Merriweather', serif; font-size: 24px; font-weight: 900; color: var(--navy); margin-bottom: 4px; }
+    .pp-date { font-size: 13px; color: var(--subtle); margin-bottom: 28px; }
+    .privacy-card h3 { font-family: 'Merriweather', serif; font-size: 15px; font-weight: 700; color: var(--navy); margin: 22px 0 8px; }
+    .privacy-card p, .privacy-card li { font-size: 14px; color: var(--text); line-height: 1.75; }
+    .privacy-card ul { padding-left: 20px; margin-top: 6px; }
+    .privacy-card li { margin-bottom: 4px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      color: #b8d4f0;
+      text-align: center;
+      padding: 22px 24px;
+      font-size: 13px;
+      line-height: 2;
+    }
+    footer strong { color: var(--gold); }
+    footer a { color: #b8d4f0; text-decoration: none; transition: color .2s; }
+    footer a:hover { color: white; }
+    footer .footer-links { margin-top: 8px; }
+    footer .footer-links a { font-size: 12px; color: #4a6a8a; margin: 0 8px; }
+    footer .footer-links a:hover { color: #b8d4f0; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 760px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: var(--navy);
+        padding: 10px 0 16px;
+        box-shadow: 0 4px 12px rgba(0,0,0,.2);
+        z-index: 99;
+      }
+      .nav-links.open { display: flex; }
+      .nav-toggle { display: block; }
+      .nav-links a { padding: 11px 24px; border-radius: 0; font-size: 15px; }
+      main { padding: 24px 16px; }
+      .hero { padding: 32px 22px 28px; }
+      .hero h1 { font-size: 24px; }
+      .hero-inner { flex-direction: column; }
+      .hero-right { width: 100%; }
+      .trust-strip { grid-template-columns: 1fr 1fr; }
+      .hiw-steps { grid-template-columns: 1fr; gap: 18px; }
+      .hiw-steps::before { display: none; }
+      .hiw-step { flex-direction: row; text-align: left; align-items: flex-start; }
+      .home-bottom { grid-template-columns: 1fr; }
+      .qs-row { grid-template-columns: 1fr; }
+      .provider-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .provider-benefits { grid-template-columns: 1fr; }
+      .f-grid { grid-template-columns: 1fr; }
+      .f-group.full { grid-column: 1; }
+      .form-card { padding: 24px 18px; }
+      .privacy-card { padding: 28px 18px; }
+      .dir-filters { flex-direction: column; }
+      .filter-count { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVIGATION ── -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo" onclick="show('home')">⚓ <span>Steadfast</span>&nbsp;Senior Referrals</div>
+    <button class="nav-toggle" onclick="toggleNav()" aria-label="Toggle menu">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a onclick="show('home')"      id="nav-home"      class="active">Home</a></li>
+      <li><a onclick="show('directory')" id="nav-directory">Find a Provider</a></li>
+      <li><a onclick="show('pricing')"   id="nav-pricing">Pricing</a></li>
+      <li><a onclick="show('contact')"   id="nav-contact">Get Help</a></li>
+      <li><a onclick="show('join')"      id="nav-join" class="nav-join">➕ Join as Provider</a></li>
+      <li><a onclick="show('privacy')"   id="nav-privacy" style="display:none;">Privacy</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── CONTENT ── -->
+<main>
+
+  <!-- ══════════════════ HOME ══════════════════ -->
+  <section class="section active" id="home">
+
+    <div class="hero">
+      <div class="hero-inner">
+        <div class="hero-left">
+          <div class="eyebrow">Serving All of Massachusetts</div>
+          <h1>Find Trusted Senior Care<br>Providers Near You</h1>
+          <p>Steadfast Senior Referrals connects Massachusetts families with vetted home care agencies, assisted living facilities, companion services, and more — all in one free, searchable directory.</p>
+          <div class="hero-ctas">
+            <button class="btn-gold"    onclick="show('directory')">🔍 Search Providers</button>
+            <button class="btn-outline" onclick="show('contact')">Ask a Question</button>
+          </div>
+        </div>
+        <div class="hero-right">
+          <div class="hero-right-title">Care Types We Cover</div>
+          <ul class="hero-svc-list">
+            <li><span class="hs-icon">🏠</span>Home Health Aides</li>
+            <li><span class="hs-icon">👥</span>Companion Care</li>
+            <li><span class="hs-icon">🏥</span>Assisted Living</li>
+            <li><span class="hs-icon">🧠</span>Memory &amp; Alzheimer's Care</li>
+            <li><span class="hs-icon">☀️</span>Adult Day Programs</li>
+            <li><span class="hs-icon">🚗</span>Medical Transportation</li>
+            <li><span class="hs-icon">💊</span>Hospice &amp; Palliative</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRUST STRIP -->
+    <div class="trust-strip">
+      <div class="trust-card">
+        <div class="tc-icon">✅</div>
+        <div class="tc-title">Vetted Providers Only</div>
+        <div class="tc-desc">Every agency is background-checked, licensed, and insured before listing.</div>
+      </div>
+      <div class="trust-card">
+        <div class="tc-icon">🆓</div>
+        <div class="tc-title">Free for Families — Forever</div>
+        <div class="tc-desc">Agencies pay us a small fee when a match is made. Your family never pays a cent.</div>
+      </div>
+      <div class="trust-card">
+        <div class="tc-icon">📍</div>
+        <div class="tc-title">All of Massachusetts</div>
+        <div class="tc-desc">Greater Boston, North Shore, South Shore, Central MA, Western MA, Cape Cod.</div>
+      </div>
+      <div class="trust-card">
+        <div class="tc-icon">⭐</div>
+        <div class="tc-title">Real Family Reviews</div>
+        <div class="tc-desc">Honest ratings from families who've used each provider firsthand.</div>
+      </div>
+    </div>
+
+    <!-- HOW IT WORKS -->
+    <div class="hiw-strip">
+      <div class="hiw-label">How It Works</div>
+      <div class="hiw-steps">
+        <div class="hiw-step">
+          <div class="hiw-num">1</div>
+          <div>
+            <strong>Search Free</strong>
+            <span>Filter by care type and your region in Massachusetts.</span>
+          </div>
+        </div>
+        <div class="hiw-step">
+          <div class="hiw-num">2</div>
+          <div>
+            <strong>Read Reviews</strong>
+            <span>See real ratings and read what other families say.</span>
+          </div>
+        </div>
+        <div class="hiw-step">
+          <div class="hiw-num">3</div>
+          <div>
+            <strong>Request a Match</strong>
+            <span>Submit one form — we personally connect you to the right provider.</span>
+          </div>
+        </div>
+        <div class="hiw-step">
+          <div class="hiw-num">4</div>
+          <div>
+            <strong>Care Begins</strong>
+            <span>Provider contacts you within 24 hours. No hidden fees to you.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HOME BOTTOM: Search + Quick Contact -->
+    <div class="home-bottom">
+
+      <div class="quick-search-card">
+        <div class="qs-title">Search Our Provider Directory</div>
+        <div class="qs-sub">Filter by care type and region to find the right match for your family.</div>
+        <div class="qs-row">
+          <select id="homeServiceFilter">
+            <option value="">All Care Types</option>
+            <option>Home Health Aide</option>
+            <option>Companion Care</option>
+            <option>Assisted Living</option>
+            <option>Memory Care</option>
+            <option>Adult Day Programs</option>
+            <option>Medical Transportation</option>
+            <option>Hospice &amp; Palliative</option>
+            <option>Personal Care</option>
+          </select>
+          <select id="homeRegionFilter">
+            <option value="">All Massachusetts Regions</option>
+            <option>Greater Boston</option>
+            <option>North Shore</option>
+            <option>South Shore</option>
+            <option>MetroWest</option>
+            <option>Central MA</option>
+            <option>Western MA</option>
+            <option>Cape Cod &amp; Islands</option>
+            <option>South Coast</option>
+          </select>
+        </div>
+        <button class="btn-search" onclick="searchFromHome()">🔍 Search Providers →</button>
+      </div>
+
+      <div class="quick-contact-card">
+        <div class="qc-header">
+          <div class="qc-icon-wrap">💬</div>
+          <div>
+            <div class="qc-title">Need Help Choosing?</div>
+            <div class="qc-sub">Tell us what you need — we'll match you personally.</div>
+          </div>
+        </div>
+        <form id="quickContactForm" action="https://formspree.io/f/REPLACE_WITH_YOUR_FORMSPREE_ID" method="POST">
+          <input type="hidden" name="_subject" value="Quick Inquiry – Steadfast Senior Referrals"/>
+          <div class="qc-fields">
+            <input type="text"  name="name"    placeholder="Your name"           required/>
+            <input type="text"  name="contact" placeholder="Phone or email"      required/>
+            <textarea name="message" maxlength="300" placeholder="What kind of senior care are you looking for?" required></textarea>
+          </div>
+          <button type="submit" class="qc-btn" id="qcBtn">Send Message →</button>
+          <div class="form-error" id="qcError">Something went wrong — please try again.</div>
+        </form>
+        <div class="form-success" id="qcSuccess" style="margin-top:12px;">
+          <span class="s-icon" style="font-size:30px;">✅</span>
+          <h3 style="font-size:16px;">Message Sent!</h3>
+          <p style="font-size:13px;">We'll reach out within a few hours.</p>
+          <button class="reset-btn" onclick="resetForm('quickContactForm','qcSuccess')" style="font-size:13px;padding:8px 16px;">Send Another</button>
+        </div>
+        <div class="qc-badges">
+          <div class="qc-badge"><span class="qc-badge-icon">🔒</span>Private &amp; Secure</div>
+          <div class="qc-badge"><span class="qc-badge-icon">📞</span>Same-Day Response</div>
+          <div class="qc-badge"><span class="qc-badge-icon">🆓</span>100% Free Service</div>
+          <div class="qc-badge"><span class="qc-badge-icon">📍</span>All of MA</div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ══════════════════ PROVIDER DIRECTORY ══════════════════ -->
+  <section class="section" id="directory">
+    <div class="page-h">
+      <div class="eyebrow">Provider Directory</div>
+      <h2>Find a Senior Care Provider</h2>
+      <p>All providers are vetted, licensed, and insured. Filter by care type and region to narrow your search. Free to browse — always.</p>
+    </div>
+
+    <div class="dir-filters">
+      <select id="filterService" onchange="renderProviders()">
+        <option value="">All Care Types</option>
+        <option>Home Health Aide</option>
+        <option>Companion Care</option>
+        <option>Assisted Living</option>
+        <option>Memory Care</option>
+        <option>Adult Day Programs</option>
+        <option>Medical Transportation</option>
+        <option>Hospice &amp; Palliative</option>
+        <option>Personal Care</option>
+      </select>
+      <select id="filterRegion" onchange="renderProviders()">
+        <option value="">All Regions</option>
+        <option>Greater Boston</option>
+        <option>North Shore</option>
+        <option>South Shore</option>
+        <option>MetroWest</option>
+        <option>Central MA</option>
+        <option>Western MA</option>
+        <option>Cape Cod &amp; Islands</option>
+        <option>South Coast</option>
+      </select>
+      <select id="filterRating" onchange="renderProviders()">
+        <option value="">Any Rating</option>
+        <option value="4.5">4.5+ Stars</option>
+        <option value="4.0">4.0+ Stars</option>
+      </select>
+      <div class="filter-count">Showing <span id="resultCount">—</span> providers</div>
+    </div>
+
+    <div class="provider-grid" id="providerGrid">
+      <!-- Rendered by JS -->
+    </div>
+  </section>
+
+  <!-- ══════════════════ PRICING ══════════════════ -->
+  <section class="section" id="pricing">
+    <div class="page-h">
+      <div class="eyebrow">How We Work</div>
+      <h2>Always Free for Families. Agencies Pay Us.</h2>
+      <p>Searching, browsing, and requesting matches is 100% free — forever. We earn a referral fee from the agency <em>only</em> when your family is successfully placed in care. No catch, no hidden cost, no obligation.</p>
+    </div>
+
+    <!-- HOW WE GET PAID (transparency strip) -->
+    <div style="background:linear-gradient(135deg,var(--navy),var(--blue));border-radius:14px;padding:28px 36px;color:white;margin-bottom:22px;display:flex;gap:32px;align-items:center;flex-wrap:wrap;">
+      <div style="font-size:36px;flex-shrink:0;">🤝</div>
+      <div style="flex:1;min-width:240px;">
+        <div style="font-family:'Merriweather',serif;font-size:17px;font-weight:900;margin-bottom:6px;">How We Make Money (We Believe in Transparency)</div>
+        <p style="font-size:13.5px;color:#b8d4f0;line-height:1.65;margin:0;">When your family connects with a provider through Steadfast and care begins, the agency pays us a referral fee — typically 10–15% of the first month's care cost. Your family never pays it. This is the same model used by every major care referral service in the country. We tell you because you deserve to know.</p>
+      </div>
+    </div>
+
+    <div class="pricing-grid">
+      <div class="pricing-card featured-plan" style="border-color:var(--navy);">
+        <div class="plan-badge" style="background:var(--navy);color:white;">✓ Standard — Families</div>
+        <div class="plan-name">Free — Always</div>
+        <div class="plan-price"><sup>$</sup>0<small>/mo</small></div>
+        <div class="plan-desc">Search, filter, read reviews, and request a match. A real person from our team follows up to help you find the right provider — at no charge to you, ever.</div>
+        <ul class="plan-features">
+          <li><span class="pf-check">✓</span>Full provider directory — all Massachusetts regions</li>
+          <li><span class="pf-check">✓</span>Filter by care type and region</li>
+          <li><span class="pf-check">✓</span>Read verified family reviews</li>
+          <li><span class="pf-check">✓</span>Submit unlimited matching requests</li>
+          <li><span class="pf-check">✓</span>We personally follow up and help you choose</li>
+          <li><span class="pf-check">✓</span>No account, no credit card, no obligation</li>
+        </ul>
+        <button class="btn-plan-premium" style="background:var(--navy);" onclick="show('directory')">Find a Provider — Free →</button>
+      </div>
+
+      <div class="pricing-card featured-plan">
+        <div class="plan-badge">⭐ Need Faster Help?</div>
+        <div class="plan-name">Personal Advisor</div>
+        <div class="plan-price"><sup>$</sup>19<small>.99/mo</small></div>
+        <div class="plan-desc">Skip the back-and-forth. A dedicated care advisor calls you within 2 hours, builds your shortlist, and stays on the case until care is in place.</div>
+        <ul class="plan-features">
+          <li><span class="pf-check">✓</span>Everything in Free</li>
+          <li><span class="pf-check">✓</span>Dedicated care advisor — you get one person's number</li>
+          <li><span class="pf-check">✓</span>30-min intake call within 2 business hours</li>
+          <li><span class="pf-check">✓</span>Curated shortlist of top 3 providers for your situation</li>
+          <li><span class="pf-check">✓</span>Weekly follow-up calls until care begins</li>
+          <li><span class="pf-check">✓</span>Exclusive access to newly listed providers</li>
+          <li><span class="pf-check">✓</span>Cancel anytime — no contracts</li>
+        </ul>
+        <!-- Replace href with your Stripe Payment Link -->
+        <a href="https://buy.stripe.com/REPLACE_WITH_YOUR_STRIPE_PAYMENT_LINK" class="btn-plan-premium" target="_blank">Get a Personal Advisor — $19.99/mo →</a>
+      </div>
+    </div>
+
+    <div style="background:white;border:1px solid var(--border);border-radius:12px;padding:24px 28px;text-align:center;">
+      <div style="font-size:22px;margin-bottom:10px;">🏢</div>
+      <div style="font-family:'Merriweather',serif;font-size:17px;font-weight:900;color:var(--navy);margin-bottom:6px;">Corporate &amp; EAP Partnerships</div>
+      <p style="font-size:14px;color:var(--subtle);max-width:540px;margin:0 auto 16px;line-height:1.6;">Offer senior care referral support as an employee benefit. We partner with HR teams to give employees access to Massachusetts' top care network — $10–20 per employee/month.</p>
+      <button class="btn-gold" onclick="show('contact')" style="font-size:14px;padding:11px 24px;">Contact Us About Partnerships</button>
+    </div>
+  </section>
+
+  <!-- ══════════════════ CONTACT / GET HELP ══════════════════ -->
+  <section class="section" id="contact">
+    <div class="form-card">
+      <h2>Get Personalized Help</h2>
+      <p class="form-sub">Not sure where to start? Tell us what your family needs and we'll personally recommend the best providers in your area — at no cost to you. We respond the same day.</p>
+
+      <form id="contactForm" action="https://formspree.io/f/REPLACE_WITH_YOUR_FORMSPREE_ID" method="POST">
+        <input type="hidden" name="_subject" value="Family Inquiry – Steadfast Senior Referrals"/>
+        <div class="f-grid">
+          <div class="f-group">
+            <label>Your Name <span class="req">*</span></label>
+            <input type="text" name="name" placeholder="Jane Smith" required/>
+          </div>
+          <div class="f-group">
+            <label>Phone Number</label>
+            <input type="tel" name="phone" placeholder="(555) 000-0000"/>
+          </div>
+          <div class="f-group full">
+            <label>Email Address <span class="req">*</span></label>
+            <input type="email" name="email" placeholder="you@email.com" required/>
+          </div>
+          <div class="f-group">
+            <label>Type of Care Needed <span class="req">*</span></label>
+            <select name="care_type" required>
+              <option value="" disabled selected>Select care type…</option>
+              <option>Home Health Aide</option>
+              <option>Companion Care</option>
+              <option>Assisted Living</option>
+              <option>Memory / Alzheimer's Care</option>
+              <option>Adult Day Programs</option>
+              <option>Medical Transportation</option>
+              <option>Hospice &amp; Palliative</option>
+              <option>Personal Care</option>
+              <option>Not Sure Yet</option>
+            </select>
+          </div>
+          <div class="f-group">
+            <label>Region in Massachusetts <span class="req">*</span></label>
+            <select name="region" required>
+              <option value="" disabled selected>Select your region…</option>
+              <option>Greater Boston</option>
+              <option>North Shore</option>
+              <option>South Shore</option>
+              <option>MetroWest</option>
+              <option>Central MA</option>
+              <option>Western MA</option>
+              <option>Cape Cod &amp; Islands</option>
+              <option>South Coast</option>
+            </select>
+          </div>
+          <div class="f-group full">
+            <label>Tell Us About Your Situation <span class="req">*</span></label>
+            <textarea name="message" placeholder="For example: My 82-year-old mother lives alone in Newton and needs help with grocery shopping and medication reminders 3 days per week. She has mild memory loss. Budget is around $25/hr." required></textarea>
+          </div>
+          <div class="f-group full">
+            <label>How Soon Do You Need Care?</label>
+            <select name="urgency">
+              <option value="" disabled selected>Select timeline…</option>
+              <option>Immediately (within a week)</option>
+              <option>Soon (1–4 weeks)</option>
+              <option>Planning ahead (1–3 months)</option>
+              <option>Just researching for now</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="btn-submit" id="contactBtn">Send My Request →</button>
+        <div class="form-note">We respond the same day — usually within a few hours.</div>
+        <div class="form-error" id="contactError">Something went wrong. Please try again or email us directly.</div>
+      </form>
+      <div class="form-success" id="contactSuccess">
+        <span class="s-icon">✅</span>
+        <h3>Request Received!</h3>
+        <p>Thank you! We'll personally review your situation and recommend the best providers in your area. You'll hear from us today.</p>
+        <button class="reset-btn" onclick="resetForm('contactForm','contactSuccess')">Submit Another Request</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════ JOIN AS PROVIDER ══════════════════ -->
+  <section class="section" id="join">
+    <div class="page-h">
+      <div class="eyebrow">For Providers</div>
+      <h2>Join the Steadfast Provider Network</h2>
+      <p>We send qualified, pre-vetted referrals to our provider partners across Massachusetts. Free to apply — we only earn a commission when a placement is made. No monthly fees.</p>
+    </div>
+
+    <div class="provider-benefits">
+      <div class="benefit-card">
+        <span class="bc-icon">📬</span>
+        <div class="bc-title">Qualified Referrals Sent to You</div>
+        <div class="bc-desc">We match families to your services and send you a warm introduction. You spend less time on cold outreach.</div>
+      </div>
+      <div class="benefit-card">
+        <span class="bc-icon">🆓</span>
+        <div class="bc-title">No Upfront Fees</div>
+        <div class="bc-desc">Your listing is free. We earn a 10–15% commission only on successful placements. Zero risk to apply.</div>
+      </div>
+      <div class="benefit-card">
+        <span class="bc-icon">⭐</span>
+        <div class="bc-title">Build Your Reputation</div>
+        <div class="bc-desc">Collect verified reviews from families. A strong rating drives more referrals your way.</div>
+      </div>
+      <div class="benefit-card">
+        <span class="bc-icon">🔍</span>
+        <div class="bc-title">Searchable Directory Listing</div>
+        <div class="bc-desc">Your profile appears in searches by families throughout your service area in Massachusetts.</div>
+      </div>
+      <div class="benefit-card">
+        <span class="bc-icon">📊</span>
+        <div class="bc-title">Provider Dashboard</div>
+        <div class="bc-desc">Track referrals received, placements made, and monthly commission earnings in one place.</div>
+      </div>
+      <div class="benefit-card">
+        <span class="bc-icon">🤝</span>
+        <div class="bc-title">Dedicated Account Support</div>
+        <div class="bc-desc">You'll have a direct line to our team for any questions, updates, or issues with referrals.</div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <h2>Provider Application</h2>
+      <p class="form-sub">Takes about 5 minutes. We review all applications within 48 hours and will contact you to schedule a brief verification call before you go live.</p>
+
+      <form id="joinForm" action="https://formspree.io/f/REPLACE_WITH_YOUR_FORMSPREE_ID" method="POST">
+        <input type="hidden" name="_subject" value="Provider Application – Steadfast Senior Referrals"/>
+        <div class="f-grid">
+          <div class="f-group">
+            <label>Agency / Business Name <span class="req">*</span></label>
+            <input type="text" name="business_name" placeholder="CareFirst Home Health" required/>
+          </div>
+          <div class="f-group">
+            <label>Primary Contact Name <span class="req">*</span></label>
+            <input type="text" name="contact_name" placeholder="John Doe" required/>
+          </div>
+          <div class="f-group">
+            <label>Business Phone <span class="req">*</span></label>
+            <input type="tel" name="phone" placeholder="(617) 555-0100" required/>
+          </div>
+          <div class="f-group">
+            <label>Business Email <span class="req">*</span></label>
+            <input type="email" name="email" placeholder="info@agency.com" required/>
+          </div>
+          <div class="f-group full">
+            <label>Primary Service Type <span class="req">*</span></label>
+            <select name="service_type" required>
+              <option value="" disabled selected>Select primary service…</option>
+              <option>Home Health Aide</option>
+              <option>Companion Care</option>
+              <option>Assisted Living Facility</option>
+              <option>Memory / Alzheimer's Care</option>
+              <option>Adult Day Programs</option>
+              <option>Medical Transportation</option>
+              <option>Hospice &amp; Palliative Care</option>
+              <option>Personal Care / Non-Medical</option>
+              <option>Multiple Services</option>
+            </select>
+          </div>
+          <div class="f-group full">
+            <label>Service Areas in Massachusetts <span class="req">*</span></label>
+            <input type="text" name="service_areas" placeholder="e.g. Greater Boston, MetroWest, North Shore" required/>
+          </div>
+          <div class="f-group">
+            <label>Years in Business</label>
+            <select name="years_in_business">
+              <option value="" disabled selected>Select…</option>
+              <option>Less than 1 year</option>
+              <option>1–3 years</option>
+              <option>3–5 years</option>
+              <option>5–10 years</option>
+              <option>10+ years</option>
+            </select>
+          </div>
+          <div class="f-group">
+            <label>Approximate Hourly Rate</label>
+            <input type="text" name="hourly_rate" placeholder="e.g. $28–$35/hr"/>
+          </div>
+          <div class="f-group">
+            <label>Licensed in Massachusetts? <span class="req">*</span></label>
+            <select name="licensed" required>
+              <option value="" disabled selected>Select…</option>
+              <option value="yes">Yes</option>
+              <option value="no">No (explain below)</option>
+              <option value="na">Not Required for My Service Type</option>
+            </select>
+          </div>
+          <div class="f-group">
+            <label>Carries Liability Insurance? <span class="req">*</span></label>
+            <select name="insured" required>
+              <option value="" disabled selected>Select…</option>
+              <option value="yes">Yes, fully insured</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+          <div class="f-group full">
+            <label>Brief Business Description <span class="req">*</span></label>
+            <textarea name="bio" placeholder="Tell us about your agency — services offered, what makes you different, any specialties (Alzheimer's care, bilingual staff, etc.)…" required></textarea>
+          </div>
+          <div class="f-group full">
+            <label>Anything Else We Should Know?</label>
+            <textarea name="notes" placeholder="References, certifications, Medicare/Medicaid acceptance, languages spoken, etc."></textarea>
+          </div>
+        </div>
+        <button type="submit" class="btn-submit" id="joinBtn">Submit Application →</button>
+        <div class="form-note">We review all applications within 48 hours and contact you to schedule a brief call.</div>
+        <div class="form-error" id="joinError">Something went wrong. Please try again or email us directly.</div>
+      </form>
+
+      <div class="form-success" id="joinSuccess">
+        <span class="s-icon">🎉</span>
+        <h3>Application Submitted!</h3>
+        <p>Thank you for applying to the Steadfast provider network. We'll review your application within 48 hours and reach out to schedule a brief verification call.</p>
+        <button class="reset-btn" onclick="resetForm('joinForm','joinSuccess')">Submit Another Application</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════ PRIVACY ══════════════════ -->
+  <section class="section" id="privacy">
+    <div class="privacy-card">
+      <h2>Privacy Policy</h2>
+      <p class="pp-date">Effective June 28, 2026 · Steadfast Senior Referrals · Massachusetts</p>
+
+      <h3>What Information We Collect</h3>
+      <p>When you submit an inquiry, search for providers, or apply as a provider, we may collect:</p>
+      <ul>
+        <li>Name, email address, and phone number</li>
+        <li>Location and region within Massachusetts</li>
+        <li>Care needs, service preferences, and timeline</li>
+        <li>Provider business details (for provider applicants)</li>
+        <li>Any additional details you voluntarily provide</li>
+      </ul>
+
+      <h3>How We Use Your Information</h3>
+      <p>We use your information solely to:</p>
+      <ul>
+        <li>Match families with appropriate senior care providers</li>
+        <li>Respond to inquiries and referral requests</li>
+        <li>Process and review provider applications</li>
+        <li>Send relevant follow-up communications</li>
+        <li>Maintain internal records for referral tracking</li>
+      </ul>
+      <p>We do <strong>not</strong> sell, rent, or share your personal information with any third party for marketing purposes.</p>
+
+      <h3>Third-Party Services We Use</h3>
+      <ul>
+        <li><strong>Formspree</strong> (formspree.io) — receives form submissions from this website</li>
+        <li><strong>Stripe</strong> (stripe.com) — processes premium membership payments securely</li>
+        <li><strong>GitHub Pages</strong> — hosts this website (no user data stored by GitHub)</li>
+        <li><strong>Gmail / Google</strong> — our business email for follow-up communications</li>
+      </ul>
+
+      <h3>Data Security</h3>
+      <p>This website is served over HTTPS (encrypted in transit). We maintain a Written Information Security Program in compliance with Massachusetts 201 CMR 17.00. We do not store payment card numbers — all payments are processed by Stripe.</p>
+
+      <h3>Your Rights</h3>
+      <p>You have the right to request access to, correction of, or deletion of your personal information at any time. Contact us at the information below.</p>
+
+      <h3>Contact</h3>
+      <div style="background:#f7faff;border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin-top:16px;font-size:14px;line-height:1.8;">
+        <strong>Steadfast Senior Referrals</strong><br>
+        Westwood, MA<br>
+        📞 (781) 929-4623 &nbsp;·&nbsp; ✉ <a href="mailto:steadfastseniorservices@gmail.com">steadfastseniorservices@gmail.com</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <strong>Steadfast Senior Referrals</strong>
+  <br>
+  <a href="tel:7819294623">📞 (781) 929-4623</a>
+  &nbsp;|&nbsp;
+  <a href="mailto:steadfastseniorservices@gmail.com">✉ steadfastseniorservices@gmail.com</a>
+  <br>
+  Serving All of Massachusetts
+  <div class="footer-links">
+    <a onclick="show('home')">Home</a>
+    <a onclick="show('directory')">Find Providers</a>
+    <a onclick="show('pricing')">Pricing</a>
+    <a onclick="show('join')">Join as Provider</a>
+    <a onclick="show('privacy')">Privacy Policy</a>
+  </div>
+  <small>© 2026 Steadfast Senior Referrals · Steadfast Senior Services · Westwood, MA · Not a licensed home care agency. We are a referral and matching service.</small>
+</footer>
+
+<script>
+/* ── PROVIDER DATA ── */
+/* To add providers: copy one object, fill in the fields, add to this array.
+   To remove: delete the object. To feature a provider: set featured: true. */
+const PROVIDERS = [
+  {
+    id: 1,
+    name: "Gentle Hands Home Care",
+    type: "Home Health Agency",
+    services: ["Home Health Aide", "Companion Care", "Personal Care"],
+    regions: ["Greater Boston", "MetroWest", "South Shore"],
+    cities: "Boston, Newton, Brookline, Framingham, Quincy",
+    rating: 4.9,
+    reviews: 52,
+    years: 14,
+    featured: true,
+    bio: "Award-winning home health agency serving Greater Boston since 2012. All caregivers are CORI-checked, bonded, and insured. Specializing in Alzheimer's and dementia care.",
+    icon: "🏠",
+    tags: ["Medicare Certified", "Alzheimer's Care", "Bilingual Staff"]
+  },
+  {
+    id: 2,
+    name: "Bay State Senior Living",
+    type: "Assisted Living",
+    services: ["Assisted Living", "Memory Care"],
+    regions: ["North Shore", "Greater Boston"],
+    cities: "Salem, Beverly, Lynn, Peabody, Danvers",
+    rating: 4.7,
+    reviews: 38,
+    years: 22,
+    featured: true,
+    bio: "Family-owned assisted living communities across the North Shore. Person-centered care with 24/7 staff support. Memory care wing with specialized programming.",
+    icon: "🏥",
+    tags: ["24/7 Staff", "Memory Care", "Private Rooms Available"]
+  },
+  {
+    id: 3,
+    name: "Cape Comfort Senior Care",
+    type: "Home Health Agency",
+    services: ["Home Health Aide", "Companion Care", "Medical Transportation"],
+    regions: ["Cape Cod & Islands"],
+    cities: "Barnstable, Falmouth, Sandwich, Yarmouth, Hyannis",
+    rating: 4.8,
+    reviews: 29,
+    years: 9,
+    featured: false,
+    bio: "The Cape's trusted in-home care provider. Serving year-round and seasonal residents with flexible scheduling, same-week starts, and dedicated care coordinators.",
+    icon: "🌊",
+    tags: ["Flexible Scheduling", "Seasonal Residents Welcome", "Same-Week Starts"]
+  },
+  {
+    id: 4,
+    name: "Pioneer Valley Elder Care",
+    type: "Home Health Agency",
+    services: ["Home Health Aide", "Companion Care", "Personal Care", "Adult Day Programs"],
+    regions: ["Western MA"],
+    cities: "Springfield, Holyoke, Northampton, Chicopee, Westfield",
+    rating: 4.6,
+    reviews: 41,
+    years: 17,
+    featured: false,
+    bio: "Western Massachusetts' most experienced elder care agency. Comprehensive services from in-home aides to adult day programs. Medicaid-certified and sliding scale available.",
+    icon: "🏡",
+    tags: ["Medicaid Accepted", "Sliding Scale", "Adult Day Programs"]
+  },
+  {
+    id: 5,
+    name: "South Shore Companions",
+    type: "Companion Care Agency",
+    services: ["Companion Care", "Medical Transportation", "Personal Care"],
+    regions: ["South Shore"],
+    cities: "Plymouth, Brockton, Weymouth, Hingham, Marshfield",
+    rating: 4.9,
+    reviews: 33,
+    years: 7,
+    featured: false,
+    bio: "Dedicated to non-medical companion and transportation services across the South Shore. Our caregivers are specially trained to build meaningful relationships with clients.",
+    icon: "👥",
+    tags: ["Non-Medical Focus", "No Minimum Hours", "7-Day Service"]
+  },
+  {
+    id: 6,
+    name: "Central Mass Senior Connect",
+    type: "Referral & Care Coordination",
+    services: ["Home Health Aide", "Assisted Living", "Adult Day Programs", "Hospice & Palliative"],
+    regions: ["Central MA"],
+    cities: "Worcester, Fitchburg, Leominster, Marlborough, Shrewsbury",
+    rating: 4.7,
+    reviews: 24,
+    years: 11,
+    featured: false,
+    bio: "Helping Central MA families navigate all senior care options — from in-home aides to facility transitions. Deep local provider relationships mean faster placements.",
+    icon: "🔗",
+    tags: ["Care Coordination", "Facility Placements", "Hospice Coordination"]
+  },
+  {
+    id: 7,
+    name: "Merrimack Valley Home Health",
+    type: "Home Health Agency",
+    services: ["Home Health Aide", "Companion Care", "Personal Care", "Memory Care"],
+    regions: ["North Shore"],
+    cities: "Lowell, Lawrence, Haverhill, Andover, Methuen",
+    rating: 4.5,
+    reviews: 19,
+    years: 6,
+    featured: false,
+    bio: "Serving the Merrimack Valley with compassionate home health care. Bilingual staff in English, Spanish, and Portuguese. Specializing in post-hospital discharge care.",
+    icon: "💙",
+    tags: ["Bilingual Staff", "Post-Hospital Discharge", "Memory Care"]
+  },
+  {
+    id: 8,
+    name: "SouthCoast Elder Solutions",
+    type: "Home Health Agency",
+    services: ["Home Health Aide", "Hospice & Palliative", "Companion Care"],
+    regions: ["South Coast"],
+    cities: "New Bedford, Fall River, Taunton, Attleboro, Dartmouth",
+    rating: 4.8,
+    reviews: 21,
+    years: 13,
+    featured: false,
+    bio: "Trusted hospice and home health care provider serving SouthCoast communities. Compassionate end-of-life care specialists with grief support for families.",
+    icon: "💛",
+    tags: ["Hospice Specialists", "Grief Support", "Portuguese-Speaking Staff"]
+  }
+];
+
+/* ── NAVIGATION ── */
+function show(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const navEl = document.getElementById('nav-' + id);
+  if (navEl) navEl.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  closeNav();
+  if (id === 'directory') renderProviders();
+}
+
+function toggleNav() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+function closeNav() {
+  document.getElementById('navLinks').classList.remove('open');
+}
+
+/* ── PROVIDER RENDERING ── */
+function getStars(rating) {
+  const full  = Math.floor(rating);
+  const half  = rating % 1 >= 0.5 ? 1 : 0;
+  const empty = 5 - full - half;
+  return '★'.repeat(full) + (half ? '½' : '') + '☆'.repeat(empty);
+}
+
+function renderProviders(serviceOverride, regionOverride) {
+  const svc    = serviceOverride || document.getElementById('filterService').value;
+  const region = regionOverride  || document.getElementById('filterRegion').value;
+  const minRat = parseFloat(document.getElementById('filterRating').value) || 0;
+
+  const filtered = PROVIDERS.filter(p => {
+    const matchSvc    = !svc    || p.services.some(s => s.toLowerCase().includes(svc.toLowerCase()));
+    const matchRegion = !region || p.regions.some(r => r.toLowerCase().includes(region.toLowerCase()));
+    const matchRating = p.rating >= minRat;
+    return matchSvc && matchRegion && matchRating;
+  });
+
+  // Featured first
+  filtered.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
+
+  const grid = document.getElementById('providerGrid');
+  document.getElementById('resultCount').textContent = filtered.length;
+
+  if (filtered.length === 0) {
+    grid.innerHTML = `
+      <div class="no-results">
+        <span class="nr-icon">🔍</span>
+        <h3>No Providers Found</h3>
+        <p>Try broadening your search — or <a href="#" onclick="show('contact')">contact us</a> and we'll find a match personally.</p>
+      </div>`;
+    return;
+  }
+
+  grid.innerHTML = filtered.map(p => `
+    <div class="provider-card${p.featured ? ' featured' : ''}">
+      ${p.featured ? '<div class="feat-badge">⭐ Featured</div>' : ''}
+      <div class="pcard-top">
+        <div class="pcard-icon">${p.icon}</div>
+        <div>
+          <div class="pcard-name">${p.name} <span class="verified-badge">✓ Vetted</span></div>
+          <div class="pcard-type">${p.type} · ${p.years} yrs in business</div>
+        </div>
+      </div>
+      <div class="pcard-stars">
+        <span class="stars">${getStars(p.rating)}</span>
+        <span class="rating-num">${p.rating}</span>
+        <span class="review-count">(${p.reviews} reviews)</span>
+      </div>
+      <div class="pcard-bio">${p.bio}</div>
+      <div class="pcard-services">
+        ${p.services.map(s => `<span class="svc-tag">${s}</span>`).join('')}
+        ${p.tags.map(t => `<span class="svc-tag" style="background:#f0fff4;color:var(--green);">${t}</span>`).join('')}
+      </div>
+      <div class="pcard-footer">
+        <div class="pcard-region">📍 <strong>${p.regions[0]}</strong> · ${p.cities}</div>
+        <button class="btn-inquire-sm" onclick="inquireProvider('${p.name}')">Inquire →</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function inquireProvider(name) {
+  show('contact');
+  // Pre-fill the message if the textarea exists
+  setTimeout(() => {
+    const ta = document.querySelector('#contactForm textarea[name="message"]');
+    if (ta && !ta.value) ta.value = `I'm interested in learning more about ${name}. `;
+    ta && ta.focus();
+  }, 200);
+}
+
+/* ── HOME SEARCH → DIRECTORY ── */
+function searchFromHome() {
+  const svc    = document.getElementById('homeServiceFilter').value;
+  const region = document.getElementById('homeRegionFilter').value;
+  show('directory');
+  setTimeout(() => {
+    if (svc)    document.getElementById('filterService').value = svc;
+    if (region) document.getElementById('filterRegion').value  = region;
+    renderProviders();
+  }, 100);
+}
+
+/* ── FORM HANDLING (AJAX for Formspree) ── */
+function handleForm(formId, btnId, successId, errorId) {
+  const form = document.getElementById(formId);
+  if (!form) return;
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById(btnId);
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    document.getElementById(errorId).style.display = 'none';
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById(successId).style.display = 'block';
+      } else {
+        throw new Error('Server error');
+      }
+    } catch {
+      document.getElementById(errorId).style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = btn.getAttribute('data-original') || 'Try Again';
+    }
+  });
+  const btn = document.getElementById(btnId);
+  if (btn) btn.setAttribute('data-original', btn.textContent);
+}
+
+function resetForm(formId, successId) {
+  const form = document.getElementById(formId);
+  form.reset();
+  form.style.display = '';
+  document.getElementById(successId).style.display = 'none';
+}
+
+/* ── INIT ── */
+document.addEventListener('DOMContentLoaded', () => {
+  handleForm('quickContactForm', 'qcBtn',      'qcSuccess',      'qcError');
+  handleForm('contactForm',      'contactBtn',  'contactSuccess', 'contactError');
+  handleForm('joinForm',         'joinBtn',     'joinSuccess',    'joinError');
+  renderProviders();
+});
+</script>
+
+</body>
+</html>

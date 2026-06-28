@@ -1,0 +1,14 @@
+# Business documents — kept private, not deployed to the public site
+execution plan/
+initial research/
+app-code/
+docs/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+*.swp
