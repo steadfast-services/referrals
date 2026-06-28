@@ -1388,6 +1388,10 @@
     <a onclick="show('join')">Join as Provider</a>
     <a onclick="show('privacy')">Privacy Policy</a>
   </div>
+  <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.08);font-size:12.5px;">
+    Need direct care services in the Westwood area?
+    &nbsp;<a href="https://steadfast-services.github.io/errands/" target="_blank" style="color:var(--gold);font-weight:700;">Visit Steadfast Senior Services →</a>
+  </div>
   <small>© 2026 Steadfast Senior Referrals · Steadfast Senior Services · Westwood, MA · Not a licensed home care agency. We are a referral and matching service.</small>
 </footer>
 
@@ -1396,6 +1400,22 @@
 /* To add providers: copy one object, fill in the fields, add to this array.
    To remove: delete the object. To feature a provider: set featured: true. */
 const PROVIDERS = [
+  {
+    id: 0,
+    name: "Steadfast Senior Services",
+    type: "Companion Care & Errand Service",
+    services: ["Companion Care", "Personal Care"],
+    regions: ["Greater Boston", "South Shore", "MetroWest"],
+    cities: "Westwood, Dedham, Norwood, Walpole, Canton, Sharon",
+    rating: 5.0,
+    reviews: 12,
+    years: 3,
+    featured: true,
+    bio: "The team behind Steadfast Senior Referrals. We provide companion care, errand support, and personal care services directly in the Westwood area — so we understand exactly what families need from every provider in our network.",
+    icon: "⚓",
+    tags: ["Founder-Operated", "Companion Care", "Errand Support"],
+    link: "https://steadfast-services.github.io/errands/"
+  },
   {
     id: 1,
     name: "Gentle Hands Home Care",
@@ -1595,7 +1615,9 @@ function renderProviders(serviceOverride, regionOverride) {
       </div>
       <div class="pcard-footer">
         <div class="pcard-region">📍 <strong>${p.regions[0]}</strong> · ${p.cities}</div>
-        <button class="btn-inquire-sm" onclick="inquireProvider('${p.name}')">Inquire →</button>
+        ${p.link
+          ? `<a href="${p.link}" target="_blank" class="btn-inquire-sm" style="text-decoration:none;">Visit Site →</a>`
+          : `<button class="btn-inquire-sm" onclick="inquireProvider('${p.name}')">Inquire →</button>`}
       </div>
     </div>
   `).join('');
