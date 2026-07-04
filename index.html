@@ -1397,9 +1397,20 @@
 
 <script>
 /* ── PROVIDER DATA ── */
-/* To add providers: copy one object, fill in the fields, add to this array.
-   To remove: delete the object. To feature a provider: set featured: true. */
-const PROVIDERS = [
+/* Source of truth is the Google Sheet below — edit it to add/remove/update providers,
+   no code changes needed. This file only keeps a tiny offline fallback + the icon lookup
+   (icons live here, not in the sheet, because multi-byte emoji get corrupted by Sheets'
+   CSV import). */
+const PROVIDER_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/1-bGJgeYhE3hhLjBZQkLf_0Ok4jKW4T3n2cszMKGdQ60/export?format=csv";
+const PROVIDER_CACHE_KEY = "providersCache";
+
+const PROVIDER_ICONS = {
+  0: "⚓", 1: "🏠", 2: "🏥", 3: "🌊", 4: "🏡",
+  5: "👥", 6: "🔗", 7: "💙", 8: "💛"
+};
+const DEFAULT_PROVIDER_ICON = "🏢";
+
+const FALLBACK_PROVIDERS = [
   {
     id: 0,
     name: "Steadfast Senior Services",
@@ -1445,98 +1456,88 @@ const PROVIDERS = [
     bio: "Family-owned assisted living communities across the North Shore. Person-centered care with 24/7 staff support. Memory care wing with specialized programming.",
     icon: "🏥",
     tags: ["24/7 Staff", "Memory Care", "Private Rooms Available"]
-  },
-  {
-    id: 3,
-    name: "Cape Comfort Senior Care",
-    type: "Home Health Agency",
-    services: ["Home Health Aide", "Companion Care", "Medical Transportation"],
-    regions: ["Cape Cod & Islands"],
-    cities: "Barnstable, Falmouth, Sandwich, Yarmouth, Hyannis",
-    rating: 4.8,
-    reviews: 29,
-    years: 9,
-    featured: false,
-    bio: "The Cape's trusted in-home care provider. Serving year-round and seasonal residents with flexible scheduling, same-week starts, and dedicated care coordinators.",
-    icon: "🌊",
-    tags: ["Flexible Scheduling", "Seasonal Residents Welcome", "Same-Week Starts"]
-  },
-  {
-    id: 4,
-    name: "Pioneer Valley Elder Care",
-    type: "Home Health Agency",
-    services: ["Home Health Aide", "Companion Care", "Personal Care", "Adult Day Programs"],
-    regions: ["Western MA"],
-    cities: "Springfield, Holyoke, Northampton, Chicopee, Westfield",
-    rating: 4.6,
-    reviews: 41,
-    years: 17,
-    featured: false,
-    bio: "Western Massachusetts' most experienced elder care agency. Comprehensive services from in-home aides to adult day programs. Medicaid-certified and sliding scale available.",
-    icon: "🏡",
-    tags: ["Medicaid Accepted", "Sliding Scale", "Adult Day Programs"]
-  },
-  {
-    id: 5,
-    name: "South Shore Companions",
-    type: "Companion Care Agency",
-    services: ["Companion Care", "Medical Transportation", "Personal Care"],
-    regions: ["South Shore"],
-    cities: "Plymouth, Brockton, Weymouth, Hingham, Marshfield",
-    rating: 4.9,
-    reviews: 33,
-    years: 7,
-    featured: false,
-    bio: "Dedicated to non-medical companion and transportation services across the South Shore. Our caregivers are specially trained to build meaningful relationships with clients.",
-    icon: "👥",
-    tags: ["Non-Medical Focus", "No Minimum Hours", "7-Day Service"]
-  },
-  {
-    id: 6,
-    name: "Central Mass Senior Connect",
-    type: "Referral & Care Coordination",
-    services: ["Home Health Aide", "Assisted Living", "Adult Day Programs", "Hospice & Palliative"],
-    regions: ["Central MA"],
-    cities: "Worcester, Fitchburg, Leominster, Marlborough, Shrewsbury",
-    rating: 4.7,
-    reviews: 24,
-    years: 11,
-    featured: false,
-    bio: "Helping Central MA families navigate all senior care options — from in-home aides to facility transitions. Deep local provider relationships mean faster placements.",
-    icon: "🔗",
-    tags: ["Care Coordination", "Facility Placements", "Hospice Coordination"]
-  },
-  {
-    id: 7,
-    name: "Merrimack Valley Home Health",
-    type: "Home Health Agency",
-    services: ["Home Health Aide", "Companion Care", "Personal Care", "Memory Care"],
-    regions: ["North Shore"],
-    cities: "Lowell, Lawrence, Haverhill, Andover, Methuen",
-    rating: 4.5,
-    reviews: 19,
-    years: 6,
-    featured: false,
-    bio: "Serving the Merrimack Valley with compassionate home health care. Bilingual staff in English, Spanish, and Portuguese. Specializing in post-hospital discharge care.",
-    icon: "💙",
-    tags: ["Bilingual Staff", "Post-Hospital Discharge", "Memory Care"]
-  },
-  {
-    id: 8,
-    name: "SouthCoast Elder Solutions",
-    type: "Home Health Agency",
-    services: ["Home Health Aide", "Hospice & Palliative", "Companion Care"],
-    regions: ["South Coast"],
-    cities: "New Bedford, Fall River, Taunton, Attleboro, Dartmouth",
-    rating: 4.8,
-    reviews: 21,
-    years: 13,
-    featured: false,
-    bio: "Trusted hospice and home health care provider serving SouthCoast communities. Compassionate end-of-life care specialists with grief support for families.",
-    icon: "💛",
-    tags: ["Hospice Specialists", "Grief Support", "Portuguese-Speaking Staff"]
   }
 ];
+
+let PROVIDERS = FALLBACK_PROVIDERS.slice();
+
+/* Small hand-rolled CSV parser (handles quoted fields with embedded commas/quotes) */
+function parseCSV(text) {
+  const rows = [];
+  let row = [], field = "", inQuotes = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (inQuotes) {
+      if (c === '"') {
+        if (text[i + 1] === '"') { field += '"'; i++; }
+        else inQuotes = false;
+      } else field += c;
+    } else if (c === '"') {
+      inQuotes = true;
+    } else if (c === ',') {
+      row.push(field); field = "";
+    } else if (c === '\n' || c === '\r') {
+      if (c === '\r' && text[i + 1] === '\n') i++;
+      row.push(field); field = "";
+      rows.push(row); row = [];
+    } else {
+      field += c;
+    }
+  }
+  if (field.length || row.length) { row.push(field); rows.push(row); }
+  return rows.filter(r => r.length > 1 || r[0] !== "");
+}
+
+function csvToProviders(text) {
+  const rows = parseCSV(text.trim());
+  const header = rows[0];
+  return rows.slice(1).map(cols => {
+    const obj = {};
+    header.forEach((h, i) => obj[h] = cols[i] !== undefined ? cols[i] : "");
+    const id = parseInt(obj.id, 10);
+    return {
+      id,
+      name: obj.name,
+      type: obj.type,
+      services: obj.services ? obj.services.split("|") : [],
+      regions: obj.regions ? obj.regions.split("|") : [],
+      cities: obj.cities,
+      rating: parseFloat(obj.rating) || 0,
+      reviews: parseInt(obj.reviews, 10) || 0,
+      years: parseInt(obj.years, 10) || 0,
+      featured: /^true$/i.test(obj.featured),
+      bio: obj.bio,
+      icon: PROVIDER_ICONS[id] || DEFAULT_PROVIDER_ICON,
+      tags: obj.tags ? obj.tags.split("|") : [],
+      link: obj.link || undefined
+    };
+  });
+}
+
+/* Loads from localStorage cache instantly (if present), then revalidates
+   against the Google Sheet in the background. Never blocks rendering on the network. */
+function loadProviders() {
+  try {
+    const cached = JSON.parse(localStorage.getItem(PROVIDER_CACHE_KEY) || "null");
+    if (cached && Array.isArray(cached.data) && cached.data.length) {
+      PROVIDERS = cached.data;
+    }
+  } catch {}
+
+  fetch(PROVIDER_SHEET_CSV_URL)
+    .then(res => { if (!res.ok) throw new Error("Sheet fetch failed"); return res.text(); })
+    .then(text => {
+      const parsed = csvToProviders(text);
+      if (!parsed.length) return;
+      PROVIDERS = parsed;
+      try {
+        localStorage.setItem(PROVIDER_CACHE_KEY, JSON.stringify({ data: parsed, ts: Date.now() }));
+      } catch {}
+      const directory = document.getElementById("directory");
+      if (directory && directory.classList.contains("active")) renderProviders();
+    })
+    .catch(() => { /* keep whatever's already in PROVIDERS (cache or fallback) */ });
+}
 
 /* ── NAVIGATION ── */
 function show(id) {
@@ -1686,6 +1687,7 @@ function resetForm(formId, successId) {
 
 /* ── INIT ── */
 document.addEventListener('DOMContentLoaded', () => {
+  loadProviders();
   handleForm('quickContactForm', 'qcBtn',      'qcSuccess',      'qcError');
   handleForm('contactForm',      'contactBtn',  'contactSuccess', 'contactError');
   handleForm('joinForm',         'joinBtn',     'joinSuccess',    'joinError');
