@@ -451,15 +451,21 @@ These items are required for the site to function fully. Currently set to placeh
 2. Confirm the CSV export URL in `index.html` (`PROVIDER_SHEET_CSV_URL`) matches the sheet's file ID.
 3. See [Section 11](#11-all-urls--quick-reference) for the sheet link and [Section 12](#12-manual-testing-guide) for how to verify this end-to-end.
 
-### Formspree (3 forms)
+### Formspree (3 forms) — ✅ Done
 
-1. Create a free account at [formspree.io](https://formspree.io)
-2. Create 3 forms (or reuse one Form ID for all three)
-3. In `index.html`, replace `REPLACE_WITH_YOUR_FORMSPREE_ID` in these three places:
-   - Quick Contact form (`action="https://formspree.io/f/REPLACE_..."`)
-   - Family Inquiry / Contact form
-   - Provider Application / Join form
-4. Test each form end-to-end and confirm emails arrive
+Live endpoints wired up under the "Steadfast Senior Services" Formspree project (3 separate
+forms, one per site form):
+
+| Site form | Formspree form | Endpoint |
+|-----------|-----------------|----------|
+| Quick Contact (home page) | Quick Contact | `https://formspree.io/f/xkolklzn` |
+| Family Inquiry (Contact page) | Family Inquiry | `https://formspree.io/f/xvzjdjqg` |
+| Provider Application (Join page) | Provider Application | `https://formspree.io/f/xdaryrdl` |
+
+Double-check each form's **Settings → notification email** in the Formspree dashboard points to
+the inbox you want leads landing in (`steadfastseniorservices@gmail.com` or otherwise). Watch
+the 50 submissions/month free-tier cap across all three combined — upgrade to Formspree Personal
+($15/mo, 200/month) if volume exceeds it.
 
 ### Stripe (1 payment link)
 
